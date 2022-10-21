@@ -7,6 +7,7 @@ tags: [documentation,jekyll]
 ---
 
 # Jekyll Documentation
+[TechnoTim Video](https://www.youtube.com/watch?v=F8iOU1ci19Q)
 
 ## Installation 
 - Install the prerequisites [Jekyll prereq site](https://jekyllrb.com/docs/installation/)
@@ -25,14 +26,17 @@ bundle exec jekyll s
 - add the below title detail
 
 ```markdown
+---
+layout: post
 title: Jekyll Documentation
-date: 2022-10-21
-categories: [homelab, jekyll]
-tags: [documentation, jekyll]
+date: 2022-10-21 23:00:00 +1100
+categories: [HomeLab,Jekyll]
+tags: [documentation,jekyll]
+---
 ```
 
 ## Install Jekyll-Compose
-
+[https://github.com/jekyll/jekyll-compose](https://github.com/jekyll/jekyll-compose)  
 - Add the below to the Gemfile
 ```
 gem 'jekyll-compose', group: [:jekyll_plugins]
