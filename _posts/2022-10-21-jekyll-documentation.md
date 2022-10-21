@@ -34,7 +34,7 @@ tags: [documentation, jekyll]
 ## Install Jekyll-Compose
 
 - Add the below to the Gemfile
-```bash
+```
 gem 'jekyll-compose', group: [:jekyll_plugins]
 ```
 - Run `bundle` in the route directory of the site
@@ -42,4 +42,9 @@ gem 'jekyll-compose', group: [:jekyll_plugins]
 ## Creating new post with Jekyll-Compose
 
 - To create new post file, run `bundle exec jekyll post "My New Post"`
-  
+
+# Troubleshooting
+Job was failing to build on github. Needed to run the below to get it to work [found here](https://stackoverflow.com/questions/72331753/ruby-and-rails-github-action-exit-code-16)
+```powershell
+bundle lock --add-platform x86_64-linux
+```
