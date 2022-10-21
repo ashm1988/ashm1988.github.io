@@ -6,7 +6,6 @@ categories: [HomeLab,Jekyll]
 tags: [documentation,jekyll]
 ---
 
-# Jekyll Documentation
 [TechnoTim Video](https://www.youtube.com/watch?v=F8iOU1ci19Q)
 
 ## Installation 

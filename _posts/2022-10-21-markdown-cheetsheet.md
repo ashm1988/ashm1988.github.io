@@ -7,5 +7,4 @@ tags: [documentation,cheatsheet,markdown]
 ---
 
 
-# Markdown Cheetsheet 
 Markdown guide [Markdown guide](https://www.markdownguide.org/basic-syntax)
