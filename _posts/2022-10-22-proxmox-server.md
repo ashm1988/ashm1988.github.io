@@ -66,6 +66,13 @@ git clone https://github.com/ashm1988/zshdotfiles.git
 ```bash
 hostnamectl set-hostname <new-hostname>
 ```
+- Update dns record in hosts file
+```bash
+sudo vim /etc/hosts
+```
+```bash
+127.0.0.1 <server name>
+```
 
 # Troubleshooting 
 - `apt update` Package issues 
