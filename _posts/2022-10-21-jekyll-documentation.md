@@ -49,12 +49,12 @@ bundle exec jekyll post "My New Post"
 ```
 
 # Troubleshooting
-Error: The process '/opt/hostedtoolcache/Ruby/3.1.2/x64/bin/bundle' failed with exit code 16
+Error: The process '/opt/hostedtoolcache/Ruby/3.1.2/x64/bin/bundle' failed with exit code 16  
 Resolution: Update bundle lock file [found here](https://stackoverflow.com/ questions/72331753/ruby-and-rails-github-action-exit-code-16)
 ```powershell
 bundle lock --add-platform x86_64-linux
 ```
-Error: The process '/opt/hostedtoolcache/Ruby/3.2.0/x64/bin/bundle' failed with exit code 5
+Error: The process '/opt/hostedtoolcache/Ruby/3.2.0/x64/bin/bundle' failed with exit code 5  
 Resolution: Limit the ruby version to 3.1 (https://github.com/cotes2020/jekyll-theme-chirpy/issues/811)
 ```powershell
 ashm1988.github.io\.github\workflows\pages-deploy.yml
