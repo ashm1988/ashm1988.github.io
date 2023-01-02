@@ -23,7 +23,6 @@ bundle exec jekyll s
 
 - Create a new file in the `_posts` directory with the `YYYY-MM-DD-TITLE.EXTENSION` format. 
 - add the below title detail
-
 ```markdown
 ---
 layout: post
@@ -44,7 +43,10 @@ gem 'jekyll-compose', group: [:jekyll_plugins]
 
 ## Creating new post with Jekyll-Compose
 
-- To create new post file, run `bundle exec jekyll post "My New Post"`
+- To create new post file, run 
+```powershell
+bundle exec jekyll post "My New Post"
+```
 
 # Troubleshooting
 Job was failing to build on github. Needed to run the below to get it to work [found here](https://stackoverflow.com/ questions/72331753/ruby-and-rails-github-action-exit-code-16)
