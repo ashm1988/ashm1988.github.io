@@ -2,8 +2,8 @@
 layout: post
 title: k3s Documentation
 date: 2022-10-22 13:36 +1100
-categories: [HomeLab, k3s]
-tags: [homelab, k3s, documentation, kubectl]
+categories: [HomeLab, k3s, k8s]
+tags: [homelab, k3s, k8s, documentation, kubectl]
 ---
 
 K3s is a fully compliant Kubernetes distribution with the following enhancements
@@ -30,43 +30,154 @@ curl -sfL https://get.k3s.io | K3S_NODE_NAME=k3s-01-app01 K3S_URL=https://192.16
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
+# Config file examples
+## Deployment yml example
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongoexpress-deployment
+  labels:
+    # needs to match the service selector app
+    app: mongoexpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongoexpress
+  template:
+    metadata:
+      labels:
+        app: mongoexpress
+    # Pod specific
+    spec:
+      containers:
+      - name: mongoexpress
+        image: mongo-express
+        ports:
+        - containerPort: 8081
+        env:
+        # secret example
+        - name: ME_CONFIG_BASICAUTH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-user
+        # configmap example  
+        - name: ME_CONFIG_MONGODB_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: mongo-url
+```
+
+## Service yml example
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    # selector app needs to match the deployment label app & pod label app
+    app: nginx
+  ports:
+    - protocol: TCP
+      # external port to hit
+      port: 8080
+      # port to hit within the container
+      targetPort: 80
+```
+
+## Service example with node port
+Node port lets you connect to he pod from externally, node port has to be in the range `default: 30000-32767`
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongoexpress-service
+spec:
+  type: NodePort
+  selector:
+    app: mongoexpress
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30081
+```
+
+## Configmap example
+```yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+data:
+  # to get the service url use the below
+  # servicename.namespace.svc.cluster.local
+  mongo-url: mongo-service.default.svc.cluster.local
+```
+
+## Secretmap example
+Values need to be base64 encoded. To encode use `echo -n <value> | base64`
+```yml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-secret
+type: Opaque
+data:
+  mongo-user: YXNo
+  mongo-password: R2VvcmdlcXcxMg==
+```
+
+## Ingress example
+```yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mongoexpress-ingress
+spec:
+  # ingressClassName is necessary since v1.22 
+  ingressClassName: nginx
+  rules:
+  - host: kubehost.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mongoexpress-service
+            port:
+              number: 8081
+```
+
 # Commands
-### Kubectl get commands
+### Most Common Commands
 ```zsh
-Examples:
   # List all pods in ps output format
   kubectl get pods
-  
-  # List all pods in ps output format with more information (such as node name)
-  kubectl get pods -o wide
-  
-  # List a single replication controller with specified NAME in ps output format
-  kubectl get replicationcontroller web
-  
-  # List deployments in JSON output format, in the "v1" version of the "apps" API group
-  kubectl get deployments.v1.apps -o json
-  
-  # List a single pod in JSON output format
-  kubectl get -o json pod web-pod-13je7
-  
-  # List a pod identified by type and name specified in "pod.yaml" in JSON output format
-  kubectl get -f pod.yaml -o json
-  
-  # List resources from a directory with kustomization.yaml - e.g. dir/kustomization.yaml
-  kubectl get -k dir/
-  
-  # Return only the phase value of the specified pod
-  kubectl get -o template pod/web-pod-13je7 --template={{.status.phase}}
-  
-  # List resource information in custom columns
-  kubectl get pod test-pod -o custom-columns=CONTAINER:.spec.containers[0].name,IMAGE:.spec.containers[0].image
-  
-  # List all replication controllers and services together in ps output format
-  kubectl get rc,services
-  
-  # List one or more resources by their type and names
-  kubectl get rc/web service/frontend pods/web-pod-13je7
-  
-  # List status subresource for a single pod.
-  kubectl get pod web-pod-13je7 --subresource status
+
+  # Show and edit deployment config 
+  kubectl edit deployment <deployment name>
+
+  # Show logs 
+  kubectl logs <pod name>
+
+  # More details about the pod
+  kubectl describe pod <pod name>
+
+  # Scale one or multiple deployments
+  kubectl scale --replicas=2 deployment nginx-depl mysql-depl
+
+  # Scale all deployments
+  kubectl scale --all --replicas=5 --namespace=default deployment
+
+  # Connect to a pods shell 
+  kubectl exec -it nginx-depl-5b59dcd777-qvzfr -- bin/bash
+
+  # Delete deployment (and in turn replicaset)
+  kubectl delete deployment <deployment name>
 ```
