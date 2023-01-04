@@ -12,20 +12,22 @@ YouTube tutorial (https://www.youtube.com/watch?v=1hwGdey7iUU&list=WL&index=1)
 
 # Installation 
 ## Master Node 
-- Run the below command to install the master node 
+Run the below command to install the master node 
 ```bash
 curl -sfL https://get.k3s.io | sh -s - --disable traefik --write-kubeconfig-mode 644 --node-name k3s-01-mgt
 ```
 
 ## Worker Nodes
 - Run the below command to install the worker node, take note of the k3s token and server url. 
-> The token is stored `/var/lib/rancher/k3s/server/node-token` on the master node
+> The token is stored `/var/lib/rancher/k3s/server/node-token` on the master node  
+
 ```bash
 curl -sfL https://get.k3s.io | K3S_NODE_NAME=k3s-01-app01 K3S_URL=https://192.168.1.107:6443 K3S_TOKEN=mynodetoken sh -
 ```
 
 ## Nginx Ingress Controller
-- Run the below command to install nginx ingress controller
+- Run the below command to install nginx ingress controller  
+
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.1/deploy/static/provider/cloud/deploy.yaml
 ```
