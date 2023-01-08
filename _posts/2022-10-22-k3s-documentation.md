@@ -1,8 +1,8 @@
 ---
 layout: post
-title: k3s Documentation
+title: K3s Documentation
 date: 2022-10-22 13:36 +1100
-categories: [HomeLab, k3s, k8s]
+categories: [HomeLab, K3s, k8s]
 tags: [homelab, k3s, k8s, documentation, kubectl]
 ---
 # Description
