@@ -2,7 +2,7 @@
 layout: post
 title: Dotfile git config
 date: 2023-01-08 15:02 +1100
-categories: [Dev environment]
+categories: [Dev environment, Dotfiles]
 tags: [dotfiles, git]
 ---
 
