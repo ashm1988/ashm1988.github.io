@@ -16,7 +16,10 @@ Run the below command to install the master node
 > Note: Installing version `INSTALL_K3S_VERSION=v1.24.9+k3s1` as there seems to be compatibility issuses with the latest and Rancher UI install via helm
 
 ```bash
-curl -sfL https://get.k3s.io |INSTALL_K3S_VERSION=v1.24.9+k3s1 sh -s - --disable traefik --write-kubeconfig-mode 644 --node-name k3s-01-mgt
+# --disable traefik - Running with nginx ingress controller  
+# --disable servicelb - Running with MetelLB loadbalancer 
+# INSTALL_K3S_VERSION=v1.24.9+k3s1 at the time of writing, installing version 1.24.9 as rancherui/helm has compatibility issues with the latest version
+curl -sfL https://get.k3s.io |INSTALL_K3S_VERSION=v1.24.9+k3s1 sh -s - --disable traefik --disable servicelb --write-kubeconfig-mode 644 --node-name k3s-01-mgt
 ```
 
 ## Worker Nodes
