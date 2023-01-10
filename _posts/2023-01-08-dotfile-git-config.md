@@ -25,7 +25,7 @@ Create an alias for the git dotfiles command. This is to seperate the dotfiles c
 ```zsh
 # --git-dir sets the git to look for the .git files etc in ~/.dotfiles instead of .git of whatever location you are in
 # --work-tree sets the git directory it searches to $home i.e. when you do status etc it looks in the home dir
-alias gdfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias gdot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
 Create a folder for the repository. 
 ```zsh
@@ -38,14 +38,14 @@ git init --bare .dotfiles
 ``` 
 Set the new repository/alias not to show untracked files to get rid of the noise of every untracked file on the machine.
 ```zsh
-gdfiles config --local status.showUntrackedFiles no
+gdot config --local status.showUntrackedFiles no
 ```
 Set the github remote repo  
 > Make sure you already have a repo set up on github.
 
 ```zsh
-# Check the local brach name is main. if not change it with `gdfiles branch -m main`
-gdfiles remote add main <repo url>
+# Check the local brach name is main. if not change it with `gdot branch -m main`
+gdot remote add main <repo url>
 ```
 
 # Pulling on a new machine 
@@ -64,8 +64,8 @@ Checkout the files from the repo
 # use -f if you need to over ride files
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
 ```
-Close and open terminal to get all the changes including the gdfiles alias.  
+Close and open terminal to get all the changes including the gdot alias.  
 Set the new repository/alias not to show untracked files to get rid of the noise of every untracked file on the machine.
 ```zsh
-gdfiles config --local status.showUntrackedFiles no
+gdot config --local status.showUntrackedFiles no
 ```
