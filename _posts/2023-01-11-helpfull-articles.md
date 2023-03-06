@@ -10,4 +10,4 @@ tags: [notes, linux]
 <https://support.binarylane.com.au/support/solutions/articles/1000055889-how-to-benchmark-disk-i-o>
 
 ## Adding a new disk to ubuntu
-<https://www.answertopia.com/ubuntu/adding-a-new-disk-drive-to-an-ubuntu-system/>
+<https://www.answertopia.com/ubuntu/adding-a-new-disk-drive-to-an-ubuntu-system>
