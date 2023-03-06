@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HA Configuration File
+title: HA Initial Setup
 date: 2023-03-06 13:13 +1100
 categories: [Home Assistant]
 tags: [configuration, setup]
