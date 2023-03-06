@@ -12,7 +12,8 @@ Install Visual Stuido Code do allow changing the ```configuration.yml``` file.
 Hit the [link](https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_vscode) to insall. 
 
 ## Enable connction via traefik/https
-Add a ```file``` provider to the ```traefik.yml```
+Add a ```file``` provider to the ```traefik.yml```.  
+
 ```yml
 providers:
   docker:
@@ -26,7 +27,8 @@ providers:
 Add the dynamic config file ```dynamic.yml```  
 > Remember to add the ```dynamic.yml``` path in the docker-compose file.  
 
-> Remember to add the dns name to dns server (pi-hole).
+> Remember to add the dns name to dns server (pi-hole).  
+
 ```yml
 ---
 tls:
@@ -64,7 +66,9 @@ http:
         servers:
           - url: http://192.168.1.186:8123      
 ```
-Update the configuration in Home Assistant to accept the connection 
+
+Update the configuration in Home Assistant to accept the connection.  
+
 ```yml
 http:
   ip_ban_enabled: false
