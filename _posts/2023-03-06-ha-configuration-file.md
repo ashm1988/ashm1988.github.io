@@ -3,7 +3,7 @@ layout: post
 title: HA Initial Setup
 date: 2023-03-06 13:13 +1100
 categories: [Home Assistant]
-tags: [configuration, setup]
+tags: [configuration, setup, hacs]
 ---
 
 # Initial Setup steps 
@@ -83,3 +83,14 @@ http:
     - fe00::/64
     - fd00::/64
 ```
+## Install HACS
+HACS is the community store for Home Assistant. <https://www.youtube.com/watch?v=Q8Gj0LiklRE>  
+- First enable advanced mode in the user profile. 
+- Install Terminal/SSH access in the add-ons 
+- Install HACS via the terminal
+```shell
+wget -O - https://get.hacs.xyz | bash -
+```
+- Restart HA
+- Add HACS as an intergration (Settings -> Device & services)
+- 
