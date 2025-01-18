@@ -12,13 +12,13 @@ tags: [homelab, docker]
 `docker ps` defaults to presenting its output in the table format shown in the previous examples. You can create your own format instead by using Go template syntax. Both standalone and table-based templates are supported, using --format 'TEMPLATE' and --format 'table TEMPLATE' syntax respectively.
 
 Create a docker config files at `~/.docker/conifg.json`
-```json
 {% raw %}
+```json
 }
         "psFormat": "table {{.Names}}\\t{{.Status}}\\t{{.Ports}} "
 }
-{% endraw %}
 ``` 
+{% endraw %}
 
 ### Upgrade Docker 
 https://docs.wavemaker.com/learn/on-premise/upgrade/docker-upgrade
