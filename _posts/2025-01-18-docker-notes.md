@@ -13,9 +13,11 @@ tags: [homelab, docker]
 
 Create a docker config files at `~/.docker/conifg.json`
 ```json
+{% raw %}
 }
-        "psFormat": "table \{\{.Names\}\}\\t\{\{.Ports\}\}\\t\{\{.Status\}\}\\t\{\{.ID\}\} "
+        "psFormat": "table {{.Names}}\\t{{.Status}}\\t{{.Ports}} "
 }
+{% endraw %}
 ``` 
 
 ### Upgrade Docker 
