@@ -14,6 +14,6 @@ tags: [homelab, docker]
 Create a docker config files at `~/.docker/conifg.json`
 ```json
 }
-        "psFormat": "table {{.Names}}\\t{{.Ports}}\\t{{.Status}}\\t{{.ID}} "
+        "psFormat": "table \{\{.Names\}\}\\t\{\{.Ports\}\}\\t\{\{.Status\}\}\\t\{\{.ID\}\} "
 }
 ``` 
