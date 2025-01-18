@@ -17,3 +17,6 @@ Create a docker config files at `~/.docker/conifg.json`
         "psFormat": "table \{\{.Names\}\}\\t\{\{.Ports\}\}\\t\{\{.Status\}\}\\t\{\{.ID\}\} "
 }
 ``` 
+
+### Upgrade Docker 
+https://docs.wavemaker.com/learn/on-premise/upgrade/docker-upgrade
