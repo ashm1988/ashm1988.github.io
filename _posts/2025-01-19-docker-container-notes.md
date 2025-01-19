@@ -17,6 +17,7 @@ Exposed port is 30013
 - [Github](https://github.com/danieladov/jellyfin-plugin-skin-manager)
 - [Repository](https://raw.githubusercontent.com/danieladov/JellyfinPluginManifest/master/manifest.json)
 - Settings
+{% raw %}
 ```xml
 <?xml version="1.0" encoding="utf-8"?>                                                                                                                  <PluginConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">                                    <selectedSkin>@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/base.css');@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/accentlist.css');</selectedSkin>
   <options>
@@ -69,3 +70,4 @@ Exposed port is 30013
   </options>
 </PluginConfiguration>
 ```
+{% endraw %}
