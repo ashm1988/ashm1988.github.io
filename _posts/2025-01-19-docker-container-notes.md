@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Concainer Notes
+title: Container Notes
 date: 2025-01-19 11:06 +1100
 categories: [HomeLab, Containers]
 tags: [homelab, truenas, Jellyfin]
