@@ -11,7 +11,6 @@ tags: [configuration, homeassistant, proxmox]
 - Navigate to the installation page on the HA [website:](https://www.home-assistant.io/installation/alternative)
 - Simply right-click the KVM/Proxmox link and copy the address
 - In your Proxmox console, use wget to download the file
-
 ```bash
 wget <ADDRESS>
 ```
