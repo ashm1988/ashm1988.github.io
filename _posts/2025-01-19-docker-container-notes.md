@@ -71,3 +71,52 @@ Exposed port is 30013
 </PluginConfiguration>
 ```
 {% endraw %}
+
+
+## Traefik Labels
+
+Set of labels to add to container running on the same host as traefik to automatically add to traefik. 
+```yaml
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+    # DNS ports
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - 8123:80
+    environment:
+      TZ: 'Australia/Sydney'
+    volumes:
+      - /home/ash/docker/pihole/data:/etc/pihole/
+      - /home/ash/docker/pihole/data/dataetc-dnsmasq.d:/etc/dnsmasq.d/
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.entrypoints=http"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.local.ashmcfarlane.com`)"
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"
+
+      - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
+      - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
+
+      - "traefik.http.routers.pihole-secure.middlewares=add-admin"
+      - "traefik.http.middlewares.add-admin.addprefix.prefix=/admin"
+
+      - "traefik.http.routers.pihole-secure.entrypoints=https"
+      - "traefik.http.routers.pihole-secure.rule=Host(`pihole.local.ashmcfarlane.com`)"
+      - "traefik.http.routers.pihole-secure.tls=true"
+      - "traefik.http.routers.pihole-secure.service=pihole"
+      - "traefik.docker.network=proxy"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+```
+
